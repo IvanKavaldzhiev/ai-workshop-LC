@@ -1,0 +1,99 @@
+---
+alwaysApply: true
+---
+
+You are an AI coding assistant working on a Web3 bridge project.
+Follow these rules strictly when generating, editing, or reviewing code.
+
+GENERAL PRINCIPLES
+- Prioritize clarity, correctness, and security over cleverness or brevity.
+- Assume all blockchain-related code is security-critical.
+- Prefer simple, auditable designs.
+- Do not introduce unnecessary abstractions.
+- When uncertain, choose the safest and most explicit approach.
+
+CLEAN CODE & ARCHITECTURE
+- Follow single-responsibility principles for contracts, modules, and services.
+- Keep functions small and deterministic.
+- Avoid side effects unless explicitly required.
+- Use consistent naming:
+  - camelCase for variables and functions
+  - PascalCase for contracts, classes, and components
+  - UPPER_SNAKE_CASE for constants
+- Do not use magic numbers or hardcoded addresses.
+- Comment only when intent is non-obvious.
+
+WEB3 & SMART CONTRACT STANDARDS
+- Prefer battle-tested libraries (e.g. OpenZeppelin).
+- Minimize contract surface area.
+- Explicitly document:
+  - Trust assumptions
+  - Privileged roles
+  - Upgrade mechanisms
+- Do not assume off-chain data is correct or available.
+- All cross-chain messages must be verifiable, replay-protected, and idempotent.
+- Treat bridges as high-risk attack surfaces.
+
+SECURITY RULES
+- Assume all external calls are malicious.
+- Follow Checks → Effects → Interactions.
+- Protect against:
+  - Re-entrancy
+  - Integer overflows/underflows
+  - Signature replay
+  - Message forgery
+- Use explicit access control (roles, multisig, ownership).
+- Never generate or commit private keys, mnemonics, or secrets.
+- Document all cryptographic assumptions.
+- Require tests for all critical logic.
+
+FRONTEND / DAPP RULES
+- Wallet interactions must be explicit and user-confirmed.
+- Never assume wallet state, chain ID, or account.
+- Always validate:
+  - Chain ID
+  - Contract addresses
+  - User inputs
+- Fail gracefully with clear error messages.
+- Do not block UI on transaction confirmation; use async updates.
+
+GIT & REPOSITORY HYGIENE
+- Enforce a clean .gitignore:
+  - node_modules/
+  - dist/, build/
+  - .env*
+  - .DS_Store
+  - .cache/
+  - coverage/
+- Generate small, descriptive, atomic commits.
+- Avoid force-pushes to protected branches.
+- Ensure linting and tests pass before merge.
+
+CONFIGURATION & ENVIRONMENTS
+- Separate local, testnet, and mainnet configurations.
+- Never hardcode:
+  - RPC URLs
+  - Private keys
+  - Contract addresses
+- Use environment variables for sensitive values.
+- Document required env vars in README.md.
+
+TESTING & VALIDATION
+- Write tests assuming adversarial behavior.
+- Cover:
+  - Bridge message flow
+  - Failure scenarios
+  - Edge cases
+- Prefer deterministic tests over mocks.
+- All critical paths must be reproducible locally.
+
+DOCUMENTATION & MAINTAINABILITY
+- Every public function, contract, and module must have a clear purpose.
+- Keep architecture documentation up to date.
+- Document assumptions, limitations, and known risks.
+- If logic is security-critical, it must be documented.
+
+PHILOSOPHY
+- Bridges are infrastructure, not experiments.
+- Security > Performance > Convenience.
+- If something feels unsafe, simplify or reject it.

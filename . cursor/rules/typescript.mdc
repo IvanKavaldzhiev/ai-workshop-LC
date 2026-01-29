@@ -1,0 +1,120 @@
+---
+alwaysApply: true
+---
+
+You are an AI coding assistant working primarily with TypeScript (2026 standards).
+Follow these rules strictly when generating, editing, or reviewing TypeScript code.
+
+LANGUAGE & TOOLING BASELINE
+- Use modern TypeScript features (ES2023+).
+- Prefer native TypeScript types over external type helpers.
+- Enable and respect strict mode:
+  - strict
+  - noImplicitAny
+  - strictNullChecks
+  - exactOptionalPropertyTypes
+- Avoid `any`; use `unknown` with explicit narrowing.
+- Prefer ESM modules over CommonJS.
+
+CODE STRUCTURE & ORGANIZATION
+- Organize code by domain, not by technical layer.
+- Each file should have a single, clear responsibility.
+- Avoid deeply nested folders; prefer flat, discoverable structures.
+- Public APIs must be explicit and intentionally exported.
+- Keep barrel files (`index.ts`) small and intentional.
+
+CLEAN CODE & READABILITY
+- Prefer explicitness over brevity.
+- Use descriptive names for variables, functions, and types.
+- Functions should:
+  - Do one thing
+  - Be small
+  - Have predictable input/output
+- Avoid complex conditional logic; refactor into well-named helpers.
+- Do not overuse generics; favor clarity.
+
+MAINTAINABILITY & LONGEVITY
+- Design APIs as if they will be used incorrectly.
+- Avoid tight coupling between modules.
+- Use dependency inversion where boundaries matter.
+- Deprecate with comments and types, not silent behavior changes.
+- Refactors must not change observable behavior without tests.
+
+SENSITIVE DATA & CREDENTIALS
+- Never hardcode secrets, private keys, mnemonics, or tokens.
+- Use environment variables for all sensitive values.
+- Validate presence and format of env vars at startup.
+- Do not log secrets, signatures, raw transactions, or PII.
+- Treat configuration as untrusted input.
+
+TESTING STRATEGY
+- Write tests at multiple levels:
+  - Unit tests for pure logic
+  - Integration tests for IO and external services
+  - End-to-end tests for critical user flows
+- Tests must be deterministic and isolated.
+- Avoid mocking core logic; prefer real behavior where feasible.
+- All critical paths must be covered by tests.
+- Test failures should be easy to diagnose.
+
+CROSS-LAYER & MULTI-LANGUAGE INTEGRATION
+- Treat external systems (other languages, services, chains) as untrusted.
+- Define clear contracts (schemas, interfaces, protobufs, ABIs).
+- Validate inputs and outputs at boundaries.
+- Prefer explicit serialization/deserialization logic.
+- Handle versioning explicitly when integrating across layers.
+
+WEB3 & DAPP DEVELOPMENT
+- Use modern, actively maintained libraries:
+  - viem / wagmi / ethers (latest stable)
+- Prefer typed contract interfaces generated from ABIs.
+- Never assume:
+  - Network
+  - Chain ID
+  - Wallet state
+- Validate addresses, chain IDs, and calldata before use.
+- Handle signatures explicitly:
+  - Typed data (EIP-712) preferred
+  - Verify signer intent and domain
+- Centralize encoding/decoding utilities.
+- Treat all on-chain data as untrusted input.
+
+ERROR HANDLING & LOGGING
+- Never swallow errors silently.
+- Use typed error objects where possible.
+- Distinguish between:
+  - Expected errors
+  - Programmer errors
+  - External/system failures
+- Log actionable context, not noise.
+- Avoid console logs in production; use structured logging.
+- Errors must preserve stack traces.
+
+ASYNC, PERFORMANCE & SCALABILITY
+- Prefer async/await over promise chaining.
+- Avoid blocking operations in hot paths.
+- Handle concurrency explicitly.
+- Guard against race conditions.
+- Cache carefully and invalidate intentionally.
+- Do not optimize prematurely; measure first.
+
+CODE STYLE & CONSISTENCY
+- Prefer immutability by default.
+- Avoid mutation across module boundaries.
+- Use early returns instead of deep nesting.
+- Keep files small and readable.
+- Formatting must be consistent and automated.
+
+DATABASE & PERSISTENCE
+- Treat the database as a persistence layer, not business logic.
+- Use explicit schemas and migrations.
+- Validate data before writing to the database.
+- Never trust data read from storage.
+- Handle transactions explicitly.
+- Avoid leaking database models into domain logic.
+
+PHILOSOPHY
+- TypeScript is a correctness tool, not a suggestion.
+- Make illegal states unrepresentable.
+- Optimize for readability, safety, and change.
+- If something is hard to explain, it is probably wrong.
