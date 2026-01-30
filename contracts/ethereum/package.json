@@ -1,0 +1,17 @@
+{
+  "name": "ethereum-bridge-contracts",
+  "version": "0.1.0",
+  "description": "Ethereum bridge smart contracts (STORY-018, Epic-005)",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy": "hardhat run script/Deploy.js"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "hardhat": "^2.19.0"
+  },
+  "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2"
+  }
+}

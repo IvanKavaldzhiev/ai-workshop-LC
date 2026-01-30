@@ -1,0 +1,6 @@
+# Cursor rules (all files under .cursor/rules)
+.cursor/rules/
+. cursor/rules/
+
+# All Markdown files
+*.md
